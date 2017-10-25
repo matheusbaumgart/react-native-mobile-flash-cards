@@ -3,7 +3,7 @@ import { View, Text, Button } from 'react-native'
 
 export default class NewDecks extends Component {
     static navigationOptions = ({ navigation }) => ({
-        title: 'New Deck',
+        title: 'Add New Deck',
     });
 
     render() {
@@ -11,7 +11,6 @@ export default class NewDecks extends Component {
 
         return (
             <View>
-                <Text>New Deck</Text>
             </View>
         );
     }
