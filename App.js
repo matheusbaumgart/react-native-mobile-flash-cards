@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import NewDeck from './components/NewDeck'
@@ -19,9 +19,11 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+
   render() {
+    // AsyncStorage.clear()
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <MainNavigator />
       </View>
     );

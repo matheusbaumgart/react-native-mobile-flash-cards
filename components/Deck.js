@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, AsyncStorage } from 'react-native';
 import Button from "./Button";
 
 export default class Deck extends Component {
@@ -15,9 +15,10 @@ export default class Deck extends Component {
             <View style={styles.container}>
                 {<Text style={styles.deckTitle}>{state.params.title}</Text>}
                 {<Text style={styles.deckCounter}>{state.params.questions.length} cards</Text>}
-
-                <Button title="Add Card" color="outlined" />
-                <Button title="Start Quiz" />
+                <View style={{marginTop: 80, width: '100%', paddingLeft: 20, paddingRight: 20}}>
+                    <Button title="Add Card" color="outlined" onPress={() => { }} />
+                    <Button title="Start Quiz" onPress={() => { }} />
+                </View>
             </View>
         );
     }

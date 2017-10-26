@@ -9,7 +9,7 @@ export default class Button extends Component {
     render() {
         let { title, color, onPress } = this.props;
         return (
-            <TouchableOpacity onPress={onPress} style={[styles.btn, styles[color]]}>
+            <TouchableOpacity onPress={onPress} style={[styles.btn, styles[color]]} >
                 <Text style={color === 'outlined' ? [styles.text, styles.textOutline] : styles.text}>
                     {title}
                 </Text>
@@ -20,20 +20,19 @@ export default class Button extends Component {
 
 const styles = StyleSheet.create({
     btn: {
-        width: '80%',
-        padding: 10,
+        padding: 14,
         borderRadius: 3,
         borderWidth: 2,
         borderColor: '#333',
         backgroundColor: '#333',
+        marginBottom: 15,
 
     },
     outlined: {
-        color: '#333',
         backgroundColor: 'transparent',
     },
     text: {
-        fontSize: 16,
+        fontSize: 17,
         color: '#fff',
         textAlign: 'center',
     },

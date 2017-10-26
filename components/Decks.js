@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, FlatList, AsyncStorage } from 'react-native'
 import { red, white } from "../utils/colors";
+import { fetchDecks } from "../utils/api";
 import DeckCard from "./DeckCard";
 
 export default class Decks extends Component {
+    state = {
+        decks: {}
+    }
 
     static navigationOptions = ({ navigation }) => {
         const { navigate } = navigation
@@ -17,8 +21,13 @@ export default class Decks extends Component {
         };
     };
 
+    componentDidMount() {
+        fetchDecks().then(decks => this.setState({ 'decks': decks}))
+    }
+    
     render() {
-        var decksData = Object.values(data);
+        var decksData = Object.values(this.state.decks);
+
         return (
             <View style={styles.cardList}>
                 <FlatList
@@ -28,31 +37,6 @@ export default class Decks extends Component {
                 />
             </View>
         );
-    }
-}
-
-const data = {
-    React: {
-        title: 'React',
-        questions: [
-            {
-                question: 'What is React?',
-                answer: 'A library for managing user interfaces'
-            },
-            {
-                question: 'Where do you make Ajax requests in React?',
-                answer: 'The componentDidMount lifecycle event'
-            }
-        ]
-    },
-    JavaScript: {
-        title: 'JavaScript',
-        questions: [
-            {
-                question: 'What is a closure?',
-                answer: 'The combination of a function and the lexical environment within which that function was declared.'
-            }
-        ]
     }
 }
 
