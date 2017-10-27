@@ -34,15 +34,12 @@ class Decks extends Component {
             title: 'Decks',
             headerRight: (
                 <TouchableOpacity onPress={handleAddDeck}>
-                    <Text style={{ fontSize: 17, padding: 10, color: lightPurp }}>Add</Text>
+                    <Text style={{ fontSize: 17, padding: 10, color: lightPurp }}>Add New</Text>
                 </TouchableOpacity>
             ),
+            headerLeft: null
         };
     };
-
-    testFunc = () => {
-        alert(1)
-    }
 
     componentDidMount() {
         const { dispatch } = this.props;

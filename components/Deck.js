@@ -2,13 +2,21 @@ import React, { Component } from 'react';
 import { Text, StyleSheet, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import Button from "./Button";
 import { red } from "../utils/colors";
+import { deleteDeck } from '../utils/api';
+import { removeDeck } from '../actions';
 
 export default class Deck extends Component {
-    static navigationOptions = (navigation) => {
+    static navigationOptions = ({ navigation, screenProps }) => {
+        const { title } = navigation.state.params
         return {
-            title: navigation.navigation.state.params.title,
+            title: title,
             headerRight: (
-                <TouchableOpacity onPress={() => ''}>
+                <TouchableOpacity onPress={() => {
+                    deleteDeck(title).then(() => {
+                        screenProps.dispatch(removeDeck(title));
+                        navigation.navigate('Decks')
+                    })
+                }}>
                     <Text style={{ fontSize: 17, padding: 10, color: red }}>Delete</Text>
                 </TouchableOpacity>
             ),

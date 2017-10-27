@@ -3,8 +3,9 @@ import './ReactotronConfig'
 import React from 'react';
 import { StyleSheet, Text, View, AsyncStorage } from 'react-native';
 
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk'
 import reducer from './reducers';
 
 import Decks from './components/Decks'
@@ -21,7 +22,15 @@ const MainNavigator = StackNavigator({
     },
 })
 
-const store = createStore(reducer);
+const middleware = [thunk]
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+
+const store = createStore(
+    reducer,
+    composeEnhancers(
+        applyMiddleware(...middleware)
+    )
+)
 
 export default class App extends React.Component {
     render() {

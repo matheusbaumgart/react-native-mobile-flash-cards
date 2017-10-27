@@ -30,15 +30,24 @@ let data = {
 
 export function initialData() {
     AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
-    return data;
+    return data
 }
 
 export function fetchDecks() {
     return AsyncStorage.getItem(DECKS_STORAGE_KEY).then(results => {
         return results === null ? initialData() : JSON.parse(results)
-    });
+    })
 }
 
 export function createDeck(deck) {
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
+}
+
+export function deleteDeck(deckName) {
+    return fetchDecks().then(decks => {
+        delete decks[deckName]
+        AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks)).then(results => {
+            return results
+        })
+    })
 }
