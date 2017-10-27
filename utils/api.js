@@ -29,7 +29,7 @@ let data = {
 };
 
 export function initialData() {
-    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data));
+    AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(data))
     return data;
 }
 
@@ -40,5 +40,5 @@ export function fetchDecks() {
 }
 
 export function createDeck(deck) {
-    return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck));
+    return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
 }

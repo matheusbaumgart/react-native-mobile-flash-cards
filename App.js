@@ -9,29 +9,29 @@ import reducer from './reducers';
 
 import Decks from './components/Decks'
 import Deck from './components/Deck'
-import NewDeck from './components/NewDeck'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { purple, white } from './utils/colors';
 
 const MainNavigator = StackNavigator({
     Decks: {
-        screen: Decks
+        screen: Decks,
     },
     Deck: {
         screen: Deck
     },
-    NewDeck: {
-        screen: NewDeck
-    }
 })
+
+const store = createStore(reducer);
 
 export default class App extends React.Component {
     render() {
         // AsyncStorage.clear()
         return (
-            <Provider store={createStore(reducer)}>
+            <Provider store={store}>
                 <View style={{ flex: 1 }}>
-                    <MainNavigator />
+                    <MainNavigator screenProps={{
+                        dispatch: store.dispatch
+                    }} />
                 </View>
             </Provider>
         );
