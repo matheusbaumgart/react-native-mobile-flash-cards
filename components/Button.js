@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 export default class Button extends Component {
@@ -40,9 +40,3 @@ const styles = StyleSheet.create({
         color: '#333'
     }
 })
-
-
-Button.propTypes = {
-    title: PropTypes.string,
-    onPress: PropTypes.func.isRequired
-}

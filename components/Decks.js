@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, FlatList, AsyncStorage } from 'react-native'
 import { red, white } from "../utils/colors";
-import { fetchDecks } from "../utils/api";
+import { connect } from 'react-redux';
+import { fetchDecksAction } from '../actions';
 import DeckCard from "./DeckCard";
 
-export default class Decks extends Component {
+class Decks extends Component {
     state = {
         decks: {}
     }
@@ -22,9 +23,9 @@ export default class Decks extends Component {
     };
 
     componentDidMount() {
-        fetchDecks().then(decks => this.setState({ 'decks': decks}))
+        this.props.dispatch(fetchDecksAction()).then(decks => this.setState({ 'decks': decks }))
     }
-    
+
     render() {
         var decksData = Object.values(this.state.decks);
 
@@ -39,6 +40,8 @@ export default class Decks extends Component {
         );
     }
 }
+
+export default connect()(Decks)
 
 const styles = StyleSheet.create({
     cardList: {

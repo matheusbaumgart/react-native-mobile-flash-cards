@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, TouchableOpacity } from 'react-native'
-import Button from "./Button";
-import { createDeck } from "../utils/api";
+import { View, Text, TextInput, StyleSheet, TouchableOpacity, Alert } from 'react-native'
+import Button from './Button';
+import { createDeck } from '../utils/api';
 
-export default class NewDecks extends Component {
+import { connect } from 'react-redux';
+import { addDeckAction } from '../actions'
+
+class NewDeck extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'Add New Deck',
     });
@@ -13,15 +16,31 @@ export default class NewDecks extends Component {
     }
 
     addNewDeck = () => {
-        const deckName = this.state;
+        const { deckName } = this.state;
+        const { navigation } = this.props;
+
         const newDeck = { [deckName]: { title: deckName, questions: [] } };
-        
+
+        this.props.dispatch(addDeckAction(newDeck));
         createDeck(newDeck)
+
+        Alert.alert(
+            `Deck ${deckName} created.`, 'Great job! Now add some cards to it.',
+            [
+                {
+                    text: 'View deck', onPress: () => navigation.navigate('Deck', {
+                        title: deckName,
+                        questions: []
+                    })
+                },
+            ],
+        );
+
+        this.setState({ deckName: '' });
+
     }
 
     render() {
-        const { goBack } = this.props.navigation;
-
         return (
             <View style={style.container}>
                 <Text>What is the title of your new deck ?</Text>
@@ -37,6 +56,8 @@ export default class NewDecks extends Component {
         );
     }
 }
+
+export default connect()(NewDeck);
 
 const style = StyleSheet.create({
     container: {
