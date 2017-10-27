@@ -4,7 +4,7 @@ import Button from './Button';
 import { createDeck } from '../utils/api';
 
 import { connect } from 'react-redux';
-import { addDeckAction } from '../actions'
+import { addDeck } from '../actions'
 
 class NewDeck extends Component {
     static navigationOptions = ({ navigation }) => ({
@@ -21,8 +21,8 @@ class NewDeck extends Component {
 
         const newDeck = { [deckName]: { title: deckName, questions: [] } };
 
-        this.props.dispatch(addDeckAction(newDeck));
         createDeck(newDeck)
+        this.props.dispatch(addDeck(newDeck));
 
         Alert.alert(
             `Deck ${deckName} created.`, 'Great job! Now add some cards to it.',
@@ -43,14 +43,14 @@ class NewDeck extends Component {
     render() {
         return (
             <View style={style.container}>
-                <Text>What is the title of your new deck ?</Text>
+                <Text style={style.h1}>Name your new deck</Text>
 
                 <TextInput
                     value={this.state.deckName}
                     style={style.input}
                     onChangeText={deckName => this.setState({ deckName })} />
 
-                <Button onPress={this.addNewDeck} title="Add Deck" />
+                <Button onPress={this.addNewDeck} title="Add New Deck" />
 
             </View>
         );
@@ -62,12 +62,15 @@ export default connect()(NewDeck);
 const style = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 40,
         alignItems: 'center',
-        paddingTop: 20,
+    },
+    h1: {
+        fontSize: 22,
     },
     input: {
         width: 300,
-        height: 44,
+        height: 50,
         padding: 8,
         borderWidth: 1,
         borderColor: '#fff',
@@ -77,7 +80,6 @@ const style = StyleSheet.create({
     submitText: {
         color: '#fff',
         fontSize: 22,
-        textAlign: 'center',
     },
 });
 

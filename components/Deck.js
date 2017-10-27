@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, AsyncStorage } from 'react-native';
+import { Text, StyleSheet, View, AsyncStorage, TouchableOpacity } from 'react-native';
 import Button from "./Button";
+import { red } from "../utils/colors";
 
 export default class Deck extends Component {
     static navigationOptions = (navigation) => {
         return {
             title: navigation.navigation.state.params.title,
+            headerRight: (
+                <TouchableOpacity onPress={() => ''}>
+                    <Text style={{ fontSize: 17, padding: 10, color: red }}>Delete</Text>
+                </TouchableOpacity>
+            ),
         };
     };
 
@@ -15,7 +21,7 @@ export default class Deck extends Component {
             <View style={styles.container}>
                 {<Text style={styles.deckTitle}>{state.params.title}</Text>}
                 {<Text style={styles.deckCounter}>{state.params.questions.length} cards</Text>}
-                <View style={{marginTop: 80, width: '100%', paddingLeft: 20, paddingRight: 20}}>
+                <View style={{ marginTop: 80, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
                     <Button title="Add Card" color="outlined" onPress={() => { }} />
                     <Button title="Start Quiz" onPress={() => { }} />
                 </View>

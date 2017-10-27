@@ -21,6 +21,7 @@ class DeckCard extends Component {
 const styles = StyleSheet.create({
     cardItem: {
         margin: 15,
+        marginTop: 0,
         padding: 10,
         height: 100,
         justifyContent: 'center',
