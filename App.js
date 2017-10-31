@@ -10,6 +10,7 @@ import reducer from './reducers';
 
 import Decks from './components/Decks'
 import Deck from './components/Deck'
+import AddCard from './components/AddCard'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { purple, white } from './utils/colors';
 
@@ -19,6 +20,9 @@ const MainNavigator = StackNavigator({
     },
     Deck: {
         screen: Deck
+    },
+    AddCard: {
+        screen: AddCard
     },
 })
 

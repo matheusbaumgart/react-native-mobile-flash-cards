@@ -9,8 +9,6 @@ import DeckCard from "./DeckCard";
 class Decks extends Component {
 
     static navigationOptions = ({ navigation, screenProps }) => {
-        const { navigate } = navigation
-
         const handleAddDeck = () => {
             AlertIOS.prompt(
                 'Enter Deck Name',

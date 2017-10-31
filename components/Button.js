@@ -9,7 +9,7 @@ export default class Button extends Component {
     render() {
         let { title, color, onPress } = this.props;
         return (
-            <TouchableOpacity onPress={onPress} style={[styles.btn, styles[color]]} >
+            <TouchableOpacity onPress={onPress} style={[styles.btn, styles[color], this.props.style]} >
                 <Text style={color === 'outlined' ? [styles.text, styles.textOutline] : styles.text}>
                     {title}
                 </Text>

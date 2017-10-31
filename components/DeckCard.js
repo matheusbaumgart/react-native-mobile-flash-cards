@@ -8,7 +8,7 @@ class DeckCard extends Component {
     render() {
         const { title, questions, navigation } = this.props
         return (
-            <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('Deck', {title, questions})}>
+            <TouchableOpacity style={styles.cardItem} onPress={() => navigation.navigate('Deck', title)}>
                 <View>
                     <Text style={styles.cardTitle}>{title}</Text>
                     <Text style={styles.cardCounter}>{questions.length} cards</Text>

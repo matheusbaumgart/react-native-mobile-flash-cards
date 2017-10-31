@@ -43,6 +43,14 @@ export function createDeck(deck) {
     return AsyncStorage.mergeItem(DECKS_STORAGE_KEY, JSON.stringify(deck))
 }
 
+export function addCardToDeck(deck, card) {
+    return fetchDecks().then(decks => {
+        let t = decks[deck]
+        t.questions.push(card)
+        return AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks))
+    })
+}
+
 export function deleteDeck(deckName) {
     return fetchDecks().then(decks => {
         delete decks[deckName]
