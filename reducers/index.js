@@ -14,12 +14,12 @@ function decks(state = {}, action) {
             };
 
         case DELETE_DECK:
-            var copy = Object.assign({}, state) // assuming you use Object.assign() polyfill!
-            delete copy[action.deckName] // shallowly mutating a shallow copy is fine
+            var copy = Object.assign({}, state) 
+            delete copy[action.deckName]
             return copy
 
         case ADD_CARD:
-            var copy = Object.assign({}, state) // assuming you use Object.assign() polyfill!
+            var copy = Object.assign({}, state)
             let t = copy[action.deck]
             t.questions.push(action.card)
             return copy

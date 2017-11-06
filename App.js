@@ -11,6 +11,7 @@ import reducer from './reducers';
 import Decks from './components/Decks'
 import Deck from './components/Deck'
 import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { purple, white } from './utils/colors';
 
@@ -24,6 +25,9 @@ const MainNavigator = StackNavigator({
     AddCard: {
         screen: AddCard
     },
+    Quiz: {
+        screen: Quiz
+    }
 })
 
 const middleware = [thunk]

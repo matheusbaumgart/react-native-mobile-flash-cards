@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, StyleSheet, View, AsyncStorage, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Button from "./Button";
 import { red } from "../utils/colors";
@@ -26,21 +26,21 @@ class Deck extends Component {
 
     render() {
         let deckTitle = this.props.navigation.state.params
-        const deck = this.props.decks[deckTitle]
+        const deck = this.props.decks[deckTitle];
 
-        return (
+        return deck ?
             <View style={styles.container}>
-                {deck && <View>
-                    <Text style={styles.deckTitle}>{deck.title}</Text>
-                    <Text style={styles.deckCounter}>{deck.questions.length} cards</Text>
-                    <View style={{ marginTop: 80, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
-                        <Button title="Add Card" color="outlined" onPress={() => { this.props.navigation.navigate('AddCard', deck.title) }} />
-                        <Button title="Start Quiz" onPress={() => { }} />
-                    </View>
+                <Text style={styles.deckTitle}>{deck.title}</Text>
+                <Text style={styles.deckCounter}>{deck.questions.length} cards</Text>
+                <View style={{ marginTop: 80, width: '100%', paddingLeft: 20, paddingRight: 20 }}>
+                    <Button title="Add Card" color="outlined" onPress={() => { this.props.navigation.navigate('AddCard', deck.title) }} />
+                    <Button title="Start Quiz" onPress={() => { this.props.navigation.navigate('Quiz', deck.questions) }} />
                 </View>
-                }
-            </View>
-        );
+            </View> 
+            : <View style={styles.container}></View>
+
+
+
     }
 }
 
