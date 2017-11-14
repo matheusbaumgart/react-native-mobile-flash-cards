@@ -2,4 +2,7 @@
 
 Targeted OS: **iOS**
 
+
+#### `yarn install` installs all dependencies.
+
 #### `yarn start` runs the project.
