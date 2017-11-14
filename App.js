@@ -14,6 +14,7 @@ import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import { TabNavigator, StackNavigator } from 'react-navigation'
 import { purple, white } from './utils/colors';
+import { setLocalNotification } from './utils/helpers'
 
 const MainNavigator = StackNavigator({
     Decks: {
@@ -41,6 +42,10 @@ const store = createStore(
 )
 
 export default class App extends React.Component {
+    componentDidMount() {
+        setLocalNotification()
+    }
+
     render() {
         // AsyncStorage.clear()
         return (

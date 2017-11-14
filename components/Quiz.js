@@ -3,6 +3,7 @@ import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Button from "./Button";
 import { lightPurp } from "../utils/colors";
+import { clearLocalNotification, setLocalNotification } from '../utils/helpers'
 
 class Quiz extends Component {
 
@@ -27,10 +28,14 @@ class Quiz extends Component {
 
     restartQuiz = () => {
         this.setState({ questionIndex: 0, correctAnswers: 0, showAnswer: false });
+        clearLocalNotification().
+            then(setLocalNotification)
     }
 
     backToDeck = () => {
         this.props.navigation.goBack();
+        clearLocalNotification().
+            then(setLocalNotification)
     }
 
     render() {
