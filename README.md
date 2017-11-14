@@ -1,7 +1,5 @@
 ## Project created for Udacity React Nanodegree - React Native.
 
-Target OS: *iOS*
+Targeted OS: **iOS**
 
-#### `yarn start`
-
-Runs the the project.
+#### `yarn start` runs the project.
